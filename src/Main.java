@@ -1,7 +1,5 @@
-import operations.Addition;
-import operations.Division;
-import operations.Multiplication;
-import operations.Subtraction;
+import calculator.Calculator;
+import calculator.Fraction;
 
 import java.util.Scanner;
 
@@ -18,48 +16,9 @@ public class Main {
         int num4 = scanner.nextInt();
         System.out.println("Enter operation (+, -, *, /):");
         char operation = scanner.next().charAt(0);
-
-        double result;
-        if (num2 != 0) {
-            switch (operation) {
-                case '+':
-                    if (num4 != 0) {
-                        result = new Addition().calculate(num1, num2, num3, num4);
-                        System.out.printf("%d/%d + %d/%d = %.4f", num1, num2, num3, num4, result);
-                    } else {
-                        System.out.println("Error! Division by zero is not allowed.");
-                    }
-                    break;
-                case '-':
-                    if (num4 != 0) {
-                        result = new Subtraction().calculate(num1, num2, num3, num4);
-                        System.out.printf("%d/%d - %d/%d = %.4f", num1, num2, num3, num4, result);
-                    } else {
-                        System.out.println("Error! Division by zero is not allowed.");
-                    }
-                    break;
-                case '*':
-                    if (num4 != 0) {
-                        result = new Multiplication().calculate(num1, num2, num3, num4);
-                        System.out.printf("(%d/%d) * (%d/%d) = %.4f", num1, num2, num3, num4, result);
-                    } else {
-                        System.out.println("Error! Division by zero is not allowed.");
-                    }
-                    break;
-                case '/':
-                    if (num3 != 0) {
-                        result = new Division().calculate(num1, num2, num3, num4);
-                        System.out.printf("(%d/%d) / (%d/%d) = %.4f", num1, num2, num3, num4, result);
-                    } else {
-                        System.out.println("Error! Division by zero is not allowed.");
-                        return;
-                    }
-                    break;
-                default:
-                    System.out.println("Error! Invalid operation.");
-            }
-        } else {
-            System.out.println("Error! Division by zero is not allowed.");
-        }
+        Fraction firstFraction = new Fraction(num1, num2);
+        Fraction secondFraction = new Fraction(num3, num4);
+        Calculator calculator = new Calculator(firstFraction, secondFraction, operation);
+        System.out.print(calculator.getOperationDescription());
     }
 }
