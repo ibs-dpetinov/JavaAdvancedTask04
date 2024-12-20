@@ -20,5 +20,6 @@ public class Main {
         Fraction secondFraction = new Fraction(num3, num4);
         Calculator calculator = new Calculator(firstFraction, secondFraction, operation);
         System.out.print(calculator.getOperationDescription());
+        scanner.close();
     }
 }
